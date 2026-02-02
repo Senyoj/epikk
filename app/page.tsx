@@ -233,7 +233,7 @@ const HomePage = () => {
 
          <section
           className={`
-            relative w-full min-h-screen py-24 bg-zinc-900 text-white overflow-hidden
+            relative w-full min-h-screen  bg-zinc-900 text-white overflow-hidden
            px-6 
             transition-opacity duration-700
             ${isDarkSection ? "opacity-50 blur-[2px]" : "opacity-100 blur-0"}

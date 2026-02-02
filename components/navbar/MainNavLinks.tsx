@@ -27,8 +27,10 @@ export default function MainNavLinks({
       {navItems.map((item, index) => (
         <div key={index} className="w-full">
           <div
-            ref={(el) => { itemRefs.current[index] = el; }}
-            className={`cursor-pointer text-3xl font-extralight  hover:text-blue-200 transition flex items-center justify-between ${
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+            className={`cursor-pointer text-3xl font-extralight hover:text-blue-200 transition flex items-center justify-between ${
               activeIndex === index ? "font- text-blue-200" : "text-white"
             }`}
             onClick={() => {
@@ -78,7 +80,7 @@ export default function MainNavLinks({
                 >
                   {item.subLinks.map((subItem, subIdx) => (
                     <Link
-                      href={subItem.href}
+                      href={subItem.href || "#"}
                       key={subIdx}
                       className="block py-1 text-lg text-gray-300 hover:text-white transition"
                     >
