@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { NavItem } from "../../data/navData";
 import MainNavLinks from "./MainNavLinks";
 import SubNavPanel from "./SubNavPanel";
@@ -48,7 +48,7 @@ export default function NavOverlay({
           initial="hidden"
           animate="visible"
           exit="exit"
-          variants={overlayPushVariants}
+          variants={overlayPushVariants as Variants}
           className={`top-0 left-0 h-screen z-40 bg-white text-black  md:w-[1440px] w-[92vw] fixed md:relative overflow-y-auto flex-col flex md:flex-row md:overflow-y-visible transition-all duration-100`}
           style={{
             position: isMobile ? "fixed" : "fixed",
@@ -58,7 +58,12 @@ export default function NavOverlay({
         >
           <div className="w-full min-h-screen bg-black/40 absolute inset-0 -z-10"></div>
           <div className="absolute top-0 left-0 w-full h-full -z-20">
-            <Image src="/bgipik.svg" alt="Background" fill className="object-cover w-full h-full" />
+            <Image
+              src="/bgipik.svg"
+              alt="Background"
+              fill
+              className="object-cover w-full h-full"
+            />
           </div>
           <MainNavLinks
             navItems={navItems}
@@ -74,10 +79,15 @@ export default function NavOverlay({
           {!isMobile && (
             <>
               <div className="relative w-6/12 flex justify-center">
-                <NavLinkIndicator activeIndex={activeIndex} itemRefs={itemRefs} />
+                <NavLinkIndicator
+                  activeIndex={activeIndex}
+                  itemRefs={itemRefs}
+                />
               </div>
               <SubNavPanel
-                navItem={activeIndex !== null ? navItems[activeIndex] : undefined}
+                navItem={
+                  activeIndex !== null ? navItems[activeIndex] : undefined
+                }
               />
             </>
           )}

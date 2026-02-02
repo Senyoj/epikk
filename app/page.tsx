@@ -84,11 +84,11 @@ const HomePage = () => {
           flex-1 flex flex-col overflow-y-auto overflow-x-hidden
           pt-16 md:pt-0
           transition-colors duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
-          ${isDarkSection ? "bg-zinc-950" : "bg-zinc-50"}
+          ${isDarkSection ? "bg-[#121212]" : "bg-zinc-50"}
         `}
       >
-        {/* 1. HERO SECTION */}
-        <section className="relative w-full h-[70vh] md:h-screen border-b border-zinc-200">
+        {/* 1. HERO SECTION - WHITE */}
+        <section className="relative w-full h-[70vh] md:h-screen border-b border-zinc-200 bg-zinc-50">
           <HeroVideo
             src="/epikkvid.mp4"
             poster="/hero-poster.png"
@@ -114,13 +114,14 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* 2. WHAT WE DO (BENTO GRID) */}
+        {/* 2. WHAT WE DO (BENTO GRID) - DARK (#121212) */}
         <section
           ref={sectionRef}
           className={`
             px-6 py-24 md:px-16 lg:px-24 min-h-screen flex flex-col justify-center relative
             transition-all duration-700 ease-in-out
-            ${isDarkSection ? "text-white" : "text-zinc-900"}
+            ${isDarkSection ? "bg-[#121212] text-white" : "bg-zinc-50 text-zinc-900"}
+            ${isDarkSection ? "border-t-8 border-[#121212]" : ""}
           `}
         >
           {isDarkSection && (
@@ -194,7 +195,8 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="relative w-full py-24 bg-zinc-950 text-white overflow-hidden border-t border-zinc-800">
+        {/* 3. TARGET AUDIENCE - WHITE */}
+        <section className="relative w-full py-24 bg-zinc-50 text-zinc-900 overflow-hidden border-t-8 border-zinc-50 transition-colors duration-700">
           {/* Background Grid for Tech Feel */}
           <div className="absolute inset-0 opacity-20 pointer-events-none bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-size-[40px_40px]" />
 
@@ -210,51 +212,31 @@ const HomePage = () => {
           <TargetAudienceCarousel />
         </section>
 
-        {/* 4. FEATURED PROJECTS */}
+       
+
+        {/* 5. WORKFLOW - WHITE */}
         <section
           className={`
-            md:mx-16 lg:mx-24 px-6 py-24
-            transition-opacity duration-700
-            ${isDarkSection ? "opacity-50 blur-[2px]" : "opacity-100 blur-0"}
+            relative w-full min-h-screen bg-zinc-50 text-zinc-900 overflow-hidden
+            px-6 py-24
+            transition-all duration-700 border-t-8 border-zinc-50
           `}
         >
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-zinc-200 pb-6">
-            <h2
-              className={`text-4xl font-bold uppercase tracking-tight ${!isDarkSection ? "text-zinc-900" : "text-white"}`}
-            >
-              Featured Projects
+          {/* Background Grid - Light Variant */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-zinc-200 via-zinc-50 to-zinc-50" />
+
+          <div className="relative z-10 flex flex-col items-center mb-16">
+            <h2 className="text-xs font-mono font-bold text-emerald-500 tracking-[0.3em] uppercase mb-4">
+              Workflow
             </h2>
-            <button
-              className={`hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-emerald-600 transition-colors ${!isDarkSection ? "text-zinc-900" : "text-white"}`}
-            >
-              View Archive <ChevronRight size={16} />
-            </button>
+            <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-center">
+              How It Works
+            </h3>
           </div>
 
-         <section
-          className={`
-            relative w-full min-h-screen  bg-zinc-900 text-white overflow-hidden
-           px-6 
-            transition-opacity duration-700
-            ${isDarkSection ? "opacity-50 blur-[2px]" : "opacity-100 blur-0"}
-          `}
-        >
-            {/* Background Grid - Darker Variant */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-zinc-800 via-zinc-950 to-zinc-950" />
-
-            <div className="relative z-10 flex flex-col items-center mb-16">
-              <h2 className="text-xs font-mono font-bold text-emerald-500 tracking-[0.3em] uppercase mb-4">
-                Workflow
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-center">
-                How It Works
-              </h3>
-            </div>
-
-            <div className="relative z-10 scale-75 md:scale-100">
-              <WorkflowRing />
-            </div>
-          </section>
+          <div className="relative z-10 scale-75 md:scale-100">
+            <WorkflowRing />
+          </div>
         </section>
       </main>
     </div>
