@@ -1,3 +1,4 @@
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavItem } from "../../data/navData";
 import Link from "next/link";
@@ -26,7 +27,7 @@ export default function MainNavLinks({
       {navItems.map((item, index) => (
         <div key={index} className="w-full">
           <div
-            ref={(el) => (itemRefs.current[index] = el)}
+            ref={(el) => { itemRefs.current[index] = el; }}
             className={`cursor-pointer text-3xl font-extralight  hover:text-blue-200 transition flex items-center justify-between ${
               activeIndex === index ? "font- text-blue-200" : "text-white"
             }`}
@@ -42,7 +43,6 @@ export default function MainNavLinks({
               }
             }}
           >
-            
             {item.label}
             {isMobile && item.subLinks && (
               <span className="ml-2">
@@ -78,11 +78,11 @@ export default function MainNavLinks({
                 >
                   {item.subLinks.map((subItem, subIdx) => (
                     <Link
-                    href={subItem.href}
-                    key={subIdx}
-                    className="block py-1 text-lg text-gray-300 hover:text-white transition"
+                      href={subItem.href}
+                      key={subIdx}
+                      className="block py-1 text-lg text-gray-300 hover:text-white transition"
                     >
-                    {subItem.label}
+                      {subItem.label}
                     </Link>
                   ))}
                 </motion.div>

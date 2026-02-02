@@ -90,7 +90,7 @@ const HomePage = () => {
         {/* 1. HERO SECTION */}
         <section className="relative w-full h-[70vh] md:h-screen border-b border-zinc-200">
           <HeroVideo
-            src="/hero-video.mp4"
+            src="/epikkvid.mp4"
             poster="/hero-poster.png"
             className="absolute inset-0 object-cover w-full h-full bg-zinc-100 grayscale hover:grayscale-0 transition-all duration-1000"
           />

@@ -433,7 +433,7 @@ export default function WorkflowRing() {
           >
             <div style={{ textAlign: "center" }}>
               <div style={{ color: "#49FFD6", fontSize: 14, fontWeight: 800 }}>
-                NEXUS
+                {"ePikk's"}
               </div>
               <div
                 style={{
