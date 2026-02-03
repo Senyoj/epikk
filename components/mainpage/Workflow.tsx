@@ -252,7 +252,7 @@ export default function WorkflowRing() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02), transparent 10%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 10%)",
+            "linear-gradient(rgba(252, 243, 243, 0.01) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px), radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02), transparent 10%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 10%)",
           backgroundSize: "40px 40px, 40px 40px, 600px 600px, 500px 500px",
           animation: "bg-move 30s linear infinite",
           opacity: 0.6,
@@ -284,7 +284,7 @@ export default function WorkflowRing() {
         className="absolute inset-0 pointer-events-none transition-opacity duration-400"
         style={{
           background: focusPaused
-            ? "radial-gradient(circle at var(--cursorX, 50%) var(--cursorY, 50%), rgba(0,0,0,0.15), rgba(0,0,0,0.85) 25%)"
+            ? "radial-gradient(circle at var(--cursorX, 50%) var(--cursorY, 50%), rgba(255, 255, 255, 0.76), rgba(0,0,0,0.85) 25%)"
             : "transparent",
           opacity: focusPaused ? 1 : 0,
           zIndex: 30,

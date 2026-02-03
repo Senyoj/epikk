@@ -1,7 +1,7 @@
 "use client";
 import HeroVideo from "@/components/mainpage/HeroVideo";
 import TargetAudienceCarousel from "@/components/mainpage/TargetAudienceCarousel";
-import WorkflowRing from "@/components/mainpage/Workflow";
+// import WorkflowRing from "@/components/mainpage/Workflow";
 import Navbar from "@/components/navbar/Navbar";
 import {
   ChevronRight,
@@ -213,31 +213,6 @@ const HomePage = () => {
         </section>
 
        
-
-        {/* 5. WORKFLOW - WHITE */}
-        <section
-          className={`
-            relative w-full min-h-screen bg-zinc-50 text-zinc-900 overflow-hidden
-            px-6 py-24
-            transition-all duration-700 border-t-8 border-zinc-50
-          `}
-        >
-          {/* Background Grid - Light Variant */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-zinc-200 via-zinc-50 to-zinc-50" />
-
-          <div className="relative z-10 flex flex-col items-center mb-16">
-            <h2 className="text-xs font-mono font-bold text-emerald-500 tracking-[0.3em] uppercase mb-4">
-              Workflow
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-bold uppercase tracking-tight text-center">
-              How It Works
-            </h3>
-          </div>
-
-          <div className="relative z-10 scale-75 md:scale-100">
-            <WorkflowRing />
-          </div>
-        </section>
       </main>
     </div>
   );

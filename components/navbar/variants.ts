@@ -1,6 +1,6 @@
 export const overlayPushVariants = {
-  hidden: { y: "-100%" },
-  visible: { y: 0, transition: { duration: 0.5, ease: "easeInOut" } },
+  hidden: { x: "-100%" },
+  visible: { x: 0, transition: { duration: 0.5, ease: "easeInOut" } },
   exit: { x: "-100%", transition: { duration: 0.5, ease: "easeInOut" } },
 };
 
