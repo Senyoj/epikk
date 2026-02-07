@@ -1,192 +1,99 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
-type ProjectStep = {
-  label: string;
-  title: string;
-  content: string;
-  image: string;
-};
+
 
 export default function ProjectTimeline() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-
-  const projectSteps: ProjectStep[] = [
+  const projectSteps = [
     {
       label: "Concept & Problem",
-      title: "The Industrial Challenge",
-      image:
-        "https://images.unsplash.com/photo-1581091215367-59ab6b91f8a7?q=80&w=1600&auto=format&fit=crop",
+      title: "THERMAL INSPECTION // CHALLENGE",
       content:
         "Modern power plants operate in hazardous environments where gas leaks and abnormal heat zones pose serious safety risks. Manual inspection exposes personnel to danger and limits real-time analysis.",
+      image:
+        "https://images.unsplash.com/photo-1581091215367-59ab6b91f8a7?q=80&w=1600&auto=format&fit=crop",
     },
     {
       label: "System Architecture",
-      title: "Core Nervous System",
+      title: "DISTRIBUTED // ARCHITECTURE",
+      content:
+        "A Raspberry Pi 5 coordinating thermal imaging, gas sensing, and mobility. An ESP32 handled low-level motor control and mission-critical sensor communication protocols.",
       image:
         "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop",
-      content:
-        "A Raspberry Pi 5 served as the central processor, coordinating thermal imaging, gas sensing, mobility, and data visualization. An ESP32 handled low-level motor control and sensor communication.",
     },
     {
       label: "Sensing & Intelligence",
-      title: "Autonomous Perception",
+      title: "ML PERCEPTION // INTELLIGENCE",
+      content:
+        "Thermal anomalies detected via MLX90640 camera, air quality sensors, and ultrasonic navigation using a Vector Field Histogram algorithm for intelligent obstacle avoidance.",
       image:
         "https://images.unsplash.com/photo-1581092334707-51c0f3e2f2b3?q=80&w=1600&auto=format&fit=crop",
-      content:
-        "Thermal anomalies detected via MLX90640 camera, MQ-series gas sensors, and ultrasonic navigation using intelligent obstacle avoidance algorithms.",
-    },
-    {
-      label: "Mobility & Power",
-      title: "Traction & Endurance",
-      image:
-        "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1600&auto=format&fit=crop",
-      content:
-        "Custom 4WD system with high-torque geared motors, driven by efficient motor drivers and powered by a high-capacity lithium battery system.",
-    },
-    {
-      label: "Monitoring & Interface",
-      title: "Real-time Telemetry",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1600&auto=format&fit=crop",
-      content:
-        "A web-based dashboard visualizes thermal data, gas levels, and live telemetry, with seamless switching between autonomous and manual control.",
     },
     {
       label: "Outcome & Expansion",
-      title: "Results & Scaling",
+      title: "SCALABLE // REALITY",
+      content:
+        "Delivered fully functional autonomous monitoring, reducing human risk. Future plans include custom PCB integration for improved robustness and industrial scalability.",
       image:
         "https://images.unsplash.com/photo-1581093458791-9d15482778a1?q=80&w=1600&auto=format&fit=crop",
-      content:
-        "The system reduced human exposure to hazardous zones. Future iterations include computer vision, advanced path planning, and custom PCB integration.",
     },
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % projectSteps.length);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, [projectSteps.length]);
-
-  const nextStep = () =>
-    setActiveIndex((prev) => (prev + 1) % projectSteps.length);
-
-  const prevStep = () =>
-    setActiveIndex(
-      (prev) => (prev - 1 + projectSteps.length) % projectSteps.length,
-    );
-
   return (
-    <div
-      className="flex flex-col lg:flex-row gap-16 items-center lg:items-start w-full"
-    >
-      {/* Sidebar */}
-      <div className="lg:w-1/3 w-full border-l border-white/10 pl-8">
-        <span className="text-emerald-500 font-mono text-sm uppercase tracking-widest block mb-4">
-          Case Study
-        </span>
+    <div className="relative w-full">
+      {/* Central Timeline Bar */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-1 md:w-3 bg-emerald-600 -translate-x-1/2 z-0 shadow-[0_0_20px_rgba(16,185,129,0.3)]" />
 
-        <h3 className="text-white text-4xl font-black uppercase tracking-tighter leading-none mb-12">
-          Autonomous <br /> Inspection Robot
-        </h3>
-
-        <div className="space-y-4">
-          {projectSteps.map((step, idx) => (
-            <button
-              key={step.label}
-              onClick={() => setActiveIndex(idx)}
-              className={`flex items-center gap-4 w-full text-left transition-all duration-300 ${
-                activeIndex === idx
-                  ? "translate-x-4"
-                  : "opacity-40 hover:opacity-100"
-              }`}
+      <div className="relative z-10 flex flex-col items-center">
+        {projectSteps.map((step, idx) => {
+          const displayIdx = (idx + 1).toString().padStart(2, "0");
+          return (
+            <div
+              key={idx}
+              className="relative w-full min-h-screen flex flex-col md:flex-row items-center py-20 group"
             >
+              {/* Left Content / Illustration Area */}
               <div
-                className={`w-1 h-10 ${
-                  activeIndex === idx ? "bg-emerald-500" : "bg-white/10"
-                }`}
-              />
-              <div>
-                <span className="text-[10px] font-mono text-emerald-500 block">
-                  STEP 0{idx + 1}
-                </span>
-                <span
-                  className={`text-sm font-bold uppercase tracking-widest ${
-                    activeIndex === idx ? "text-white" : "text-zinc-500"
-                  }`}
-                >
-                  {step.label}
-                </span>
+                className={`w-full md:w-1/2 px-6 md:px-20 ${idx % 2 === 0 ? "md:text-right" : "md:order-last md:text-left"} text-center`}
+              >
+                <div className="inline-block mb-4">
+                  <span className="text-emerald-500 font-mono text-sm font-bold tracking-[0.3em] uppercase">
+                    PHASE {displayIdx}
+                  </span>
+                </div>
+                <h4 className="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8 group-hover:text-emerald-400 transition-colors duration-500">
+                  {step.title}
+                </h4>
+                <p className="text-zinc-400 text-lg md:text-xl font-medium leading-relaxed max-w-xl mx-auto md:mx-0">
+                  {step.content}
+                </p>
               </div>
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="lg:w-2/3 w-full relative">
-        <div className="bg-zinc-900/50 border border-white/5 rounded-[3rem] p-10 md:p-16 min-h-[480px] overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text */}
-            <div>
-              <h4 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tighter mb-6">
-                {projectSteps[activeIndex].title}
-              </h4>
+              {/* Center Identifier - Changed to Index */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="text-[12rem] md:text-[24rem] font-black text-white leading-none tracking-tighter opacity-[0.03] select-none group-hover:opacity-[0.08] transition-opacity duration-1000">
+                  {displayIdx}
+                </div>
+              </div>
 
-              <p className="text-zinc-400 text-xl md:text-2xl leading-relaxed font-light">
-                {projectSteps[activeIndex].content}
-              </p>
-            </div>
-
-            {/* Image */}
-            <div className="relative w-full h-[280px] md:h-[360px] rounded-2xl overflow-hidden">
-              <Image
-                key={activeIndex}
-                src={projectSteps[activeIndex].image}
-                alt={projectSteps[activeIndex].title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
-          </div>
-
-          {/* Controls */}
-          <div className="mt-12 pt-8 border-t border-white/5 flex justify-between items-center">
-            <div className="flex gap-2">
-              {projectSteps.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-1 rounded-full transition-all duration-500 ${
-                    i === activeIndex ? "w-8 bg-emerald-500" : "w-2 bg-white/10"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <div className="flex gap-4">
-              <button
-                onClick={prevStep}
-                className="p-3 border border-white/10 rounded-full text-white hover:bg-white hover:text-black transition-all"
+              {/* Right Side Illustration Area */}
+              <div
+                className={`w-full md:w-1/2 flex justify-center p-8 ${idx % 2 === 0 ? "md:order-last" : ""}`}
               >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={nextStep}
-                className="p-3 border border-white/10 rounded-full text-white hover:bg-white hover:text-black transition-all"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+                <div className="relative w-full aspect-square md:aspect-video overflow-hidden border border-white/10 rounded-sm">
+                  <Image
+                    fill
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-110 group-hover:scale-100"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

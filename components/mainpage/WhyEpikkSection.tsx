@@ -71,8 +71,6 @@ const pillars: Pillar[] = [
   },
 ];
 
-/* ---------------- COMPONENT ---------------- */
-
 export default function WhyEpikkSection() {
   const [activeTab, setActiveTab] = useState<PillarId>("execution");
 
@@ -82,46 +80,42 @@ export default function WhyEpikkSection() {
     <section
       id="why"
       data-theme="dark"
-      className="px-6 py-32 md:px-16 lg:px-24 min-h-screen bg-zinc-950 flex flex-col justify-center"
+      className="px-6 py-20 sm:py-32 md:px-16 lg:px-24 min-h-screen bg-zinc-950 transition-all duration-1000 flex flex-col justify-center text-left overflow-hidden"
     >
-      <div className="flex flex-col lg:flex-row gap-20 max-w-7xl mx-auto w-full">
-        {/* LEFT */}
-        <div className="lg:w-1/3 space-y-10">
-          <div>
-            <h2 className="text-emerald-500 font-mono text-xs tracking-[0.4em] uppercase mb-4">
-              Why ePikk
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start max-w-7xl mx-auto w-full">
+        {/* Left Toggle List */}
+        <div className="w-full lg:w-1/3 flex flex-col gap-4">
+          <div className="mb-10 text-center lg:text-left">
+            <h2 className="text-emerald-500 font-mono text-xs font-bold tracking-[0.4em] uppercase mb-4">
+              Why ePikk Engineering?
             </h2>
-            <p className="text-zinc-400 text-lg max-w-sm">
-              We build real systems, not demonstrations. Execution beats theory.
+            <p className="text-zinc-400 text-base sm:text-lg max-w-sm mx-auto lg:mx-0 font-medium leading-relaxed">
+              We build real systems, not demonstrations. We focus on execution,
+              not theory.
             </p>
           </div>
 
-          <div className="space-y-2">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-2">
             {pillars.map((pillar) => (
               <button
                 key={pillar.id}
                 onClick={() => setActiveTab(pillar.id)}
-                className={`flex items-center gap-4 p-5 rounded-2xl border transition-all text-left ${
+                className={`flex items-center gap-3 sm:gap-4 p-4 sm:p-5 rounded-2xl border transition-all duration-300 text-left group ${
                   activeTab === pillar.id
-                    ? "bg-zinc-800 border-zinc-700 text-white"
-                    : "border-transparent text-zinc-500 hover:bg-zinc-900"
+                    ? "bg-zinc-800 border-zinc-700 text-white shadow-xl shadow-black/40"
+                    : "bg-transparent border-transparent text-zinc-500 hover:bg-zinc-900"
                 }`}
               >
                 <div
-                  className={`p-2 rounded-lg ${
-                    activeTab === pillar.id
-                      ? " text-white"
-                      : "bg-zinc-900 text-zinc-400"
-                  }`}
+                  className={`p-2 rounded-lg transition-colors ${activeTab === pillar.id ? "bg-emerald-500 text-black" : "bg-zinc-900 text-zinc-400 group-hover:text-emerald-500"}`}
                 >
                   {pillar.icon}
                 </div>
-
-                <div>
-                  <span className="text-[10px] font-mono opacity-50 block">
+                <div className="flex-1">
+                  <span className="text-[9px] font-mono font-bold opacity-50 block mb-1">
                     {pillar.tag}
                   </span>
-                  <span className="text-sm font-black uppercase">
+                  <span className="text-xs sm:text-sm font-black uppercase tracking-tighter">
                     {pillar.label}
                   </span>
                 </div>
@@ -130,31 +124,46 @@ export default function WhyEpikkSection() {
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="lg:w-2/3">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
-            <div className="space-y-12 relative z-10">
-              <div>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500 block mb-4">
-                  01 // The Challenge
+        {/* Right Info Card */}
+        <div className="w-full lg:w-2/3">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-4xl sm:rounded-[3rem] p-6 sm:p-10 md:p-16 relative overflow-hidden group shadow-2xl">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500 opacity-[0.03] -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-8 sm:mb-10">
+                <span className="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[9px] sm:text-[10px] font-mono font-black border border-emerald-500/20 rounded-full uppercase whitespace-nowrap">
+                  Technical Profile
                 </span>
-                <p className="text-3xl font-black uppercase tracking-tighter text-white">
-                  {activeData.challenge}
-                </p>
+                <div className="h-px flex-1 bg-zinc-800" />
               </div>
 
-              <div>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-emerald-500 block mb-4">
-                  02 // The Solution
-                </span>
-                <p className="text-2xl text-zinc-300">{activeData.solution}</p>
-              </div>
+              <div className="space-y-8 sm:space-y-12">
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <span className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-zinc-500 uppercase block mb-3 sm:mb-4">
+                    01 // The Challenge
+                  </span>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tighter leading-tight uppercase">
+                    {activeData.challenge}
+                  </p>
+                </div>
 
-              <div className="bg-zinc-800/50 p-8 rounded-3xl border border-zinc-700">
-                <span className="text-[10px] tracking-[0.2em] uppercase text-zinc-500 block mb-4">
-                  03 // The Impact
-                </span>
-                <p className="text-xl text-zinc-400">{activeData.result}</p>
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">
+                  <span className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-emerald-500 uppercase block mb-3 sm:mb-4">
+                    02 // The Solution
+                  </span>
+                  <p className="text-base sm:text-lg md:text-2xl font-medium text-zinc-300 tracking-tight leading-relaxed">
+                    {activeData.solution}
+                  </p>
+                </div>
+
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-1000 bg-zinc-800/50 p-6 sm:p-8 rounded-3xl sm:rounded-4xl border border-zinc-700/50">
+                  <span className="text-[9px] sm:text-[10px] font-black tracking-[0.2em] text-zinc-500 uppercase block mb-3 sm:mb-4">
+                    03 // The Impact
+                  </span>
+                  <p className="text-sm sm:text-base md:text-xl font-medium text-zinc-400">
+                    {activeData.result}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

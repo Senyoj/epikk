@@ -94,7 +94,7 @@ export default function ProjectIdeasSection() {
             >
               {/* Higher contrast gradient background bubble */}
               <div
-                className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br opacity-[0.08] translate-x-8 -translate-y-8 rounded-full group-hover:scale-150 transition-transform duration-700 ${cat.color}`}
+                className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br opacity-[0.08] translate-x-8 -translate-y-8 rounded-full group-hover:scale-150 transition-transform duration-700 ${cat.color}`}
               />
 
               <div>
@@ -118,11 +118,11 @@ export default function ProjectIdeasSection() {
 
       {/* FULL SCREEN MODAL */}
       {selectedCategory && (
-        <div className="fixed inset-0 z-[100] bg-white animate-in fade-in zoom-in duration-300 flex flex-col overflow-y-auto">
+        <div className="fixed inset-0 z-100 bg-white animate-in fade-in zoom-in duration-300 flex flex-col overflow-y-auto">
           <div className="sticky top-0 bg-white/95 backdrop-blur-xl border-b border-zinc-100 z-10 px-8 py-6 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <div
-                className={`w-3 h-3 rounded-full bg-gradient-to-br ${selectedCategory.color}`}
+                className={`w-3 h-3 rounded-full bg-linear-to-br ${selectedCategory.color}`}
               />
               <h2 className="text-xl font-black uppercase tracking-tighter text-black">
                 {selectedCategory.name}
@@ -169,6 +169,17 @@ export default function ProjectIdeasSection() {
                         <p className="text-zinc-800 text-lg leading-relaxed font-medium">
                           {project.innovation}
                         </p>
+                      </div>
+                      <div className="md:col-span-2 mt-8 flex justify-end">
+                        <a
+                          href="https://forms.gle/EcewmnGA5ibSbQN57"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-mono font-bold tracking-widest uppercase text-zinc-500 hover:text-black transition-colors"
+                        >
+                          Learn more
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
                       </div>
                     </div>
                   </div>
