@@ -73,7 +73,7 @@ const pillars: Pillar[] = [
 
 /* ---------------- COMPONENT ---------------- */
 
-export default function WhyEpikkSection(): JSX.Element {
+export default function WhyEpikkSection() {
   const [activeTab, setActiveTab] = useState<PillarId>("execution");
 
   const activeData = pillars.find((p) => p.id === activeTab) ?? pillars[0];
