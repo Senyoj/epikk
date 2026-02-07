@@ -17,7 +17,7 @@ export default function ContactSection() {
     "Training",
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setStatus("submitting");
     setTimeout(() => setStatus("success"), 2000);
