@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -11,7 +12,6 @@ import WhyEpikkSection from "@/components/mainpage/WhyEpikkSection";
 import ContactSection from "@/components/mainpage/ContactSection";
 
 const HomePage = () => {
-  // Theme state: controls the global background color
   const [currentTheme, setCurrentTheme] = useState("dark");
 
   const services = [
@@ -76,7 +76,7 @@ const HomePage = () => {
       threshold: 0,
     };
 
-    const handleIntersect = (entries) => {
+    const handleIntersect = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const theme = entry.target.getAttribute("data-theme");
@@ -91,6 +91,12 @@ const HomePage = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const scrollToSection = (id: string) => {
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div
@@ -114,9 +120,7 @@ const HomePage = () => {
             alt="Hero Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
-
           <div className="absolute inset-0 bg-black/30 z-0" />
-
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
             <div className="max-w-4xl">
               <span className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-white/80 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
@@ -133,7 +137,10 @@ const HomePage = () => {
                 <button className="w-full sm:w-auto px-8 py-5 bg-white text-black font-black rounded-full hover:bg-emerald-400 transition-all hover:scale-105 active:scale-95 shadow-lg">
                   Explore Projects
                 </button>
-                <button className="w-full sm:w-auto px-8 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-full hover:bg-white/20 transition-all">
+                <button
+                  className="w-full sm:w-auto px-8 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-black rounded-full hover:bg-white/20 transition-all"
+                  onClick={() => scrollToSection("process")}
+                >
                   Our Method
                 </button>
               </div>
@@ -144,6 +151,7 @@ const HomePage = () => {
 
       {/* SECTION 2: CAPABILITIES (LIGHT) */}
       <section
+        id="services"
         data-theme="light"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen flex flex-col justify-center relative transition-all duration-1000"
       >
@@ -178,7 +186,6 @@ const HomePage = () => {
               `}
             >
               <div className="absolute top-0 left-0 w-0 h-1 bg-emerald-500 transition-all duration-500 group-hover:w-full" />
-
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="flex justify-between items-start mb-12">
                   <span className="text-5xl font-black opacity-10 text-black">
@@ -188,7 +195,6 @@ const HomePage = () => {
                     <ArrowUpRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 text-emerald-600" />
                   </div>
                 </div>
-
                 <div className="text-left">
                   <h5 className="text-[10px] font-bold tracking-widest uppercase mb-3 text-emerald-600 font-mono">
                     {service.subtitle}
@@ -208,6 +214,7 @@ const HomePage = () => {
 
       {/* SECTION 3: TARGET AUDIENCE (DARK) */}
       <section
+        id="audience"
         data-theme="dark"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen transition-all duration-1000 bg-zinc-950 flex flex-col items-center justify-center text-center"
       >
@@ -218,7 +225,6 @@ const HomePage = () => {
               WHO IT’S FOR
             </h2>
           </div>
-
           <h3 className="text-5xl md:text-8xl font-black leading-none tracking-tighter uppercase mb-6">
             Our Target <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">
@@ -226,7 +232,6 @@ const HomePage = () => {
             </span>
           </h3>
         </div>
-
         <div className="w-full relative z-10 flex justify-center">
           <TargetAudienceCarousel />
         </div>
@@ -234,6 +239,7 @@ const HomePage = () => {
 
       {/* SECTION 4: THE PROCESS (LIGHT) */}
       <section
+        id="process"
         data-theme="light"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen transition-all duration-1000 bg-white flex flex-col justify-center"
       >
@@ -251,11 +257,9 @@ const HomePage = () => {
             </span>
           </h3>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
           {workflowSteps.map((item, idx) => (
             <div key={idx} className="flex flex-col group text-left">
-              {/* IMAGE CONTAINER - NO ROUNDED CORNERS AS REQUESTED */}
               <div className="relative aspect-[16/10] overflow-hidden mb-8 bg-zinc-100">
                 <Image
                   fill
@@ -267,7 +271,6 @@ const HomePage = () => {
                   {item.step}
                 </div>
               </div>
-
               <div className="border-t border-zinc-100 pt-6">
                 <h4 className="text-2xl font-black uppercase tracking-tighter mb-4 group-hover:text-emerald-600 transition-colors">
                   {item.title}
@@ -281,6 +284,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* SERVICES SUMMARY */}
       <section
         data-theme="dark"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen transition-all duration-1000 bg-zinc-950 flex flex-col justify-center overflow-hidden"
@@ -288,19 +292,27 @@ const HomePage = () => {
         <ServicesSummaryCarousel />
       </section>
 
+      {/* TIMELINE */}
       <section
+        id="timeline"
         data-theme="dark"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen transition-all duration-1000 bg-zinc-950 flex flex-col justify-center overflow-hidden"
       >
         <ProjectTimeline />
       </section>
-      <ProjectIdeasSection />
 
-      <WhyEpikkSection />
+      {/* CATALOG */}
+      <section id="catalog">
+        <ProjectIdeasSection />
+      </section>
+
+      {/* PHILOSOPHY */}
+      <section id="why">
+        <WhyEpikkSection />
+      </section>
 
       <ContactSection />
 
-      {/* SUBTLE FOOTER */}
       <footer
         data-theme="dark"
         className="bg-zinc-950 px-6 py-12 border-t border-zinc-900 text-center"
@@ -312,7 +324,6 @@ const HomePage = () => {
           <p className="text-zinc-600 text-[10px] font-mono uppercase tracking-[0.2em]">
             © 2026 epikk designs
           </p>
-        
         </div>
       </footer>
 

@@ -64,7 +64,9 @@ export default function ServicesSummaryCarousel() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12 items-start w-full">
+    <div
+      className="flex flex-col lg:flex-row gap-12 items-start w-full"
+    >
       {/* Left Header Area */}
       <div className="lg:w-1/3 flex flex-col justify-between self-stretch">
         <div>

@@ -80,6 +80,7 @@ export default function WhyEpikkSection(): JSX.Element {
 
   return (
     <section
+      id="why"
       data-theme="dark"
       className="px-6 py-32 md:px-16 lg:px-24 min-h-screen bg-zinc-950 flex flex-col justify-center"
     >

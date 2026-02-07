@@ -53,7 +53,10 @@ const TargetAudienceCarousel = () => {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto h-[600px] flex flex-col items-center justify-center">
+    <div
+      id="#audience"
+      className="relative w-full max-w-6xl mx-auto h-[600px] flex flex-col items-center justify-center"
+    >
       {/* 3D Carousel Container with modern [perspective] utility */}
       <div className="relative w-full h-[400px] flex items-center justify-center perspective-[1000px]">
         {audienceData.map((item, index) => (

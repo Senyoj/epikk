@@ -71,6 +71,7 @@ export default function ProjectIdeasSection() {
     <>
       {/* GRID SECTION */}
       <section
+        id="catalog"
         data-theme="light"
         className="px-6 py-32 md:px-16 lg:px-24 min-h-screen bg-white transition-all duration-1000 flex flex-col justify-center relative overflow-hidden text-left"
       >
@@ -109,7 +110,6 @@ export default function ProjectIdeasSection() {
                 <div className="p-2.5 border border-zinc-200 group-hover:bg-black group-hover:text-white group-hover:border-black transition-all">
                   <ArrowUpRight className="w-5 h-5" />
                 </div>
-              
               </div>
             </button>
           ))}

@@ -82,7 +82,9 @@ export default function ProjectTimeline() {
     );
 
   return (
-    <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-start w-full">
+    <div
+      className="flex flex-col lg:flex-row gap-16 items-center lg:items-start w-full"
+    >
       {/* Sidebar */}
       <div className="lg:w-1/3 w-full border-l border-white/10 pl-8">
         <span className="text-emerald-500 font-mono text-sm uppercase tracking-widest block mb-4">

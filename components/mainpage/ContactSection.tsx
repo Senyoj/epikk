@@ -53,6 +53,7 @@ export default function ContactSection() {
 
   return (
     <section
+      id="contact"
       data-theme="light"
       className="px-6 py-32 md:px-16 lg:px-24 min-h-screen bg-white transition-all duration-1000 text-center flex flex-col justify-center"
     >
