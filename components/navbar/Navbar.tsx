@@ -5,11 +5,16 @@ import Image from "next/image";
 import { NAV_LINKS } from "@/data/navData";
 import { NavLink } from "@/data/constants";
 
-const NAVBAR_OFFSET = 96; 
+const NAVBAR_OFFSET = 96;
 
-export default function Navbar() {
+interface NavbarProps {
+  theme?: "dark" | "light";
+}
+
+export default function Navbar({ theme = "dark" }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -22,24 +27,50 @@ export default function Navbar() {
     href: string,
   ) => {
     e.preventDefault();
-
     const id = href.replace("#", "");
     const element = document.getElementById(id);
-
     if (!element) return;
 
     const y =
       element.getBoundingClientRect().top + window.pageYOffset - NAVBAR_OFFSET;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-
+    window.scrollTo({ top: y, behavior: "smooth" });
     setIsMobileMenuOpen(false);
   };
 
-  const logoSrc = isScrolled ? "/logo-black.png" : "/logo-white.png";
+  // Choose logo based on theme and scroll state
+  const logoSrc =
+    theme === "dark"
+      ? isScrolled
+        ? "/logo-black.png"
+        : "/logo-white.png"
+      : isScrolled
+        ? "/logo-white.png"
+        : "/logo-black.png";
+
+  const textColor =
+    theme === "dark"
+      ? isScrolled
+        ? "text-black"
+        : "text-white"
+      : isScrolled
+        ? "text-white"
+        : "text-black";
+  const hoverUnderlineColor =
+    theme === "dark"
+      ? isScrolled
+        ? "bg-black"
+        : "bg-white"
+      : isScrolled
+        ? "bg-white"
+        : "bg-black";
+  const ctaBtnClasses =
+    theme === "dark"
+      ? isScrolled
+        ? "bg-black text-white hover:bg-gray-800"
+        : "bg-white text-black hover:bg-gray-200"
+      : isScrolled
+        ? "bg-white text-black hover:bg-gray-200"
+        : "bg-black text-white hover:bg-gray-800";
 
   return (
     <nav
@@ -68,15 +99,11 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className={`text-sm font-medium relative transition-opacity hover:opacity-70 ${
-                isScrolled ? "text-black" : "text-white"
-              }`}
+              className={`text-sm font-medium relative transition-opacity hover:opacity-70 ${textColor}`}
             >
               {link.name}
               <span
-                className={`absolute -bottom-1 left-0 h-0.5 w-0 transition-all hover:w-full ${
-                  isScrolled ? "bg-black" : "bg-white"
-                }`}
+                className={`absolute -bottom-1 left-0 h-0.5 w-0 transition-all hover:w-full ${hoverUnderlineColor}`}
               />
             </a>
           ))}
@@ -85,11 +112,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:block">
           <button
-            className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${
-              isScrolled
-                ? "bg-black text-white hover:bg-gray-800"
-                : "bg-white text-black hover:bg-gray-200"
-            }`}
+            className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors ${ctaBtnClasses}`}
           >
             Contact Us
           </button>
@@ -150,7 +173,6 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-
           <button className="mt-4 w-full bg-black text-white py-4 rounded-xl font-semibold">
             Contact Us
           </button>

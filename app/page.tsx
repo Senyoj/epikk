@@ -12,7 +12,7 @@ import WhyEpikkSection from "@/components/mainpage/WhyEpikkSection";
 import ContactSection from "@/components/mainpage/ContactSection";
 
 const HomePage = () => {
-  const [currentTheme, setCurrentTheme] = useState("dark");
+    const [currentTheme, setCurrentTheme] = useState<"dark" | "light">("dark");
 
   const services = [
     {
@@ -86,6 +86,7 @@ const HomePage = () => {
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
+    
     const sections = document.querySelectorAll("section[data-theme]");
     sections.forEach((section) => observer.observe(section));
 
@@ -116,7 +117,7 @@ const HomePage = () => {
         <div className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden rounded-[2.5rem] md:rounded-[4rem] shadow-2xl shadow-black/50 bg-zinc-900">
           <Image
             fill
-            src="/epikheroback.svg"
+            src="/banner.png"
             alt="Hero Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
